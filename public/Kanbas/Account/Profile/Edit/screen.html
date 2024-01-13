@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Screen</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td id="kanbas-navigation" valign="top"></td>
+        <script>
+          (async () => {
+            let result = await fetch("/Kanbas/Navigation/index.html");
+            const kanbasNavigation =
+              document.getElementById("kanbas-navigation");
+            kanbasNavigation.innerHTML = await result.text();
+          })();
+        </script>
+
+        <td id="profile-navigation" valign="top"></td>
+        <script>
+          (async () => {
+            let result = await fetch("/Kanbas/Account/Navigation/index.html");
+            const profileNavigation =
+              document.getElementById("profile-navigation");
+            profileNavigation.innerHTML = await result.text();
+          })();
+          load();
+        </script>
+
+        <td id="edit-profile" valign="top"></td>
+        <script>
+          (async () => {
+            let result = await fetch("/Kanbas/Account/Profile/Edit/index.html");
+            const editProfile = document.getElementById("edit-profile");
+            editProfile.innerHTML = await result.text();
+          })();
+        </script>
+      </tr>
+    </table>
+  </body>
+</html>

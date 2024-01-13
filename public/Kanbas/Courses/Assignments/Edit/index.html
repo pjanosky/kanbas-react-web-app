@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Assignment</title>
+  </head>
+  <body>
+    <select>
+      <option>Edit</option>
+      <option selected>Speed Grader</option>
+      <option>Duplicate</option>
+      <option>Delete</option>
+      <option>Move To...</option>
+      <option>Send To...</option>
+      <option>Copy To...</option>
+      <option>Share to Commons</option>
+    </select>
+    <hr />
+
+    <h2>Assignment Name</h2>
+    <form>
+      <input value="A1 - ENV + HTML" /> <br />
+      <br />
+      <textarea>This is the assignment description.</textarea>
+      <br />
+      <br />
+      <label>
+        Points <br />
+        <input type="number" value="100" />
+      </label>
+
+      <br />
+      <br />
+      <label>
+        Assignment Group <br />
+        <select>
+          <option selected>ASSIGNMENTS</option>
+        </select>
+      </label>
+
+      <br />
+      <br />
+      <label>
+        Display Grade as <br />
+        <select>
+          <option selected>Percentage</option>
+        </select>
+      </label>
+
+      <br />
+      <br />
+      <label>
+        Submission Type <br />
+        <select>
+          <option selected>Online</option>
+        </select>
+      </label>
+
+      <br />
+      <br />
+      <label>Online Entry Options</label> <br />
+      <input id="entry-option-text" type="checkbox" name="online-entry-check" />
+      <label for="entry-option-text"> Text Entry </label><br />
+
+      <input
+        id="entry-option-website"
+        type="checkbox"
+        name="online-entry-check"
+      />
+      <label for="entry-option-website"> Website URL </label><br />
+
+      <input
+        id="entry-option-media"
+        type="checkbox"
+        name="online-entry-check"
+      />
+      <label for="entry-option-media"> Media Recordings </label><br />
+
+      <input
+        id="entry-option-annotation"
+        type="checkbox"
+        name="online-entry-check"
+      />
+      <label for="entry-option-annotation"> Student Annotation </label><br />
+
+      <input id="entry-option-file" type="checkbox" name="online-entry-check" />
+      <label for="entry-option-file"> File Upload </label><br /><br />
+
+      Assign<br />
+      <label>
+        Assign to <br />
+        <input value="Everyone" />
+      </label>
+      <br />
+      <br />
+
+      <label>
+        Due <br />
+        <input type="date" value="2021-01-01" />
+      </label>
+      <br />
+      <br />
+
+      <label>
+        Available from <br />
+        <input type="date" value="2021-01-01" />
+      </label>
+      <br />
+      <br />
+
+      <label>
+        Until <br />
+        <input type="date" value="2021-01-01" />
+      </label>
+      <br />
+      <br />
+
+      <a href="/Kanbas/Courses/Assignments/screen.html">
+        <button type="button">Cancel</button>
+      </a>
+      <a href="/Kanbas/Courses/Assignments/screen.html">
+        <button type="button">Save</button>
+      </a>
+    </form>
+  </body>
+</html>

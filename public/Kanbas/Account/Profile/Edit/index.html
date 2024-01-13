@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Profile</title>
+  </head>
+  <body>
+    <h1>Peter Janosky</h1>
+    <form>
+      <label>
+        Name:*
+        <input type="text" value="Peter Janosky" />
+      </label>
+      <label>
+        Pronouns:
+        <select>
+          <option>None</option>
+          <option>He/him</option>
+          <option>She/her</option>
+          <option>They/them</option>
+        </select>
+      </label>
+      <br />
+      <br />
+      <label>
+        Title:
+        <input type="text" />
+      </label>
+
+      <h2>Contact</h2>
+      No registered services, you can add some on the
+      <a href="#">settings</a> page.
+
+      <h2>Biography</h2>
+      4th year computer science student at Northeastern University. <br />
+      <textarea rows="3" cols="60">
+4th year computer science student at Northeastern University.</textarea
+      >
+
+      <h2>Links</h2>
+      <ul>
+        <li><a href="#">YouTube</a> Links to an external site.</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" value="YouTube" /> →</td>
+            <td>
+              <input type="text" value="https://www.youtube.com" />
+            </td>
+            <td>
+              <a href="#">Remove</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button type="button">Add another link</button> <br />
+              <button type="button">Cancel</button>
+              <a href="/Kanbas/Account/Profile/screen.html">
+                <button type="button">Save Profile</button><br />
+              </a>
+              <button type="button">Edit Profile</button>
+              <a href="/Kanbas/Account/Profile/screen.html">
+                <button type="button">Cancel Editing</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>

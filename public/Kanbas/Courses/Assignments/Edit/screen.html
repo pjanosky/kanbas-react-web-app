@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment Edit Screen</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td id="kanbas-navigation" valign="top"></td>
+        <script>
+          (async () => {
+            let result = await fetch("/Kanbas/Navigation/index.html");
+            const kanbasNavigation =
+              document.getElementById("kanbas-navigation");
+            kanbasNavigation.innerHTML = await result.text();
+          })();
+        </script>
+
+        <td id="courses-navigation" valign="top"></td>
+        <script>
+          (async () => {
+            let result = await fetch("/Kanbas/Courses/Navigation/index.html");
+            const kanbasNavigation =
+              document.getElementById("courses-navigation");
+            kanbasNavigation.innerHTML = await result.text();
+          })();
+          load();
+        </script>
+
+        <td id="assignment-edit" valign="top" width="100%"></td>
+        <script>
+          (async () => {
+            let result = await fetch(
+              "/Kanbas/Courses/Assignments/Edit/index.html"
+            );
+            const kanbasNavigation = document.getElementById("assignment-edit");
+            kanbasNavigation.innerHTML = await result.text();
+          })();
+        </script>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,41 +1,327 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Grades Screen</title>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/Kanbas/styles.css" rel="stylesheet" />
+    <link href="/Kanbas/Navigation/index.css" rel="stylesheet" />
+    <link href="/Kanbas/Courses/Navigation/index.css" rel="stylesheet" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td id="kanbas-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("kanbas-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
+    <div class="d-none d-md-block">
+      <ul class="wd-kanbas-navigation">
+        <li style="padding-bottom: 0px">
+          <a href="http://northeastern.edu">
+            <img
+              src="/images/northeastern.png"
+              style="width: 4em; height: 4em; padding-bottom: 0"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Account/Profile/screen.html">
+            <i class="fa-regular fa-circle-user wd-account"></i><br />
+            Account
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Dashboard/screen.html">
+            <i class="fa-solid fa-gauge-high"></i><br />
+            Dashboard
+          </a>
+        </li>
+        <li class="wd-active">
+          <a href="/Kanbas/Courses/Home/screen.html">
+            <i class="fa-solid fa-book"></i> <br />
+            Courses
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-calendar-days"></i> <br />
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-envelope-open-text"></i> <br />
+            Inbox
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-clock"></i> <br />
+            History
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-tv"></i> <br />
+            Studio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> <br />
+            Commons
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-circle-question"></i> <br />
+            Help
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-start">
+      <div class="d-none d-md-block wd-kanbas-nav-spacer"></div>
 
-        <td id="courses-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("courses-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-          load();
-        </script>
+      <div class="d-none d-md-block flex-shrink-1">
+        <ul class="wd-navigation">
+          <li>
+            <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Modules</a>
+          </li>
+          <li>
+            <a href="#">Piazza</a>
+          </li>
+          <li>
+            <a href="#">Zoom Meetings</a>
+          </li>
+          <li class="wd-active">
+            <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+          </li>
+          <li>
+            <a href="#">Quizzes</a>
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Grades/screen.html">Grades</a>
+          </li>
+          <li>
+            <a href="#">People</a>
+          </li>
+          <li>
+            <a href="#">Panopto Video</a>
+          </li>
+          <li>
+            <a href="#">Discussions</a>
+          </li>
+          <li>
+            <a href="#">Announcements</a>
+          </li>
+          <li>
+            <a href="#">Pages</a>
+          </li>
+          <li>
+            <a href="#">Files</a>
+          </li>
+          <li>
+            <a href="#">Rubrics</a>
+          </li>
+          <li>
+            <a href="#">Outcomes</a>
+          </li>
+          <li>
+            <a href="#">Collaborations</a>
+          </li>
+          <li>
+            <a href="#">Syllabus</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-grow-1">
+        <input placeholder="Search for Assignments" />
+        <button>Group</button>
+        <button>Assignment</button>
+        <select>
+          <option selected>Edit Assignment Dates</option>
+        </select>
 
-        <td id="grades" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Assignments/index.html");
-            const kanbasNavigation = document.getElementById("grades");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
-      </tr>
-    </table>
+        <hr />
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h3>ASSIGNMENTS 40% of Total</h3></td>
+              <td>
+                <select>
+                  <option selected>Edit</option>
+                  <option>Speed Grader</option>
+                  <option>Duplicate</option>
+                  <option>Delete</option>
+                  <option>Move To...</option>
+                  <option>Send To...</option>
+                  <option>Copy To...</option>
+                  <option>Share to Commons</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A1 - ENV + HTML</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A2 - CSS + BOOTSTRAP</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A3 - JS + REACT</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A4 - STATE + REDUX</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A5 - NODE + SESSION</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              A6 - MONGO + MONGOOSE</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+        </ul>
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h3>QUIZZES 10% of Total</h3></td>
+              <td>
+                <select>
+                  <option selected>Edit</option>
+                  <option>Speed Grader</option>
+                  <option>Duplicate</option>
+                  <option>Delete</option>
+                  <option>Move To...</option>
+                  <option>Send To...</option>
+                  <option>Copy To...</option>
+                  <option>Share to Commons</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              Q1 - HTML</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html"> Q2 - CSS</a>
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              Q3 - JS, ES6</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              Q4 - NODE</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html">
+              Q5 - MONGO</a
+            >
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+        </ul>
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h3>EXAMS 20% of Total</h3></td>
+              <td>
+                <select>
+                  <option selected>Edit</option>
+                  <option>Speed Grader</option>
+                  <option>Duplicate</option>
+                  <option>Delete</option>
+                  <option>Move To...</option>
+                  <option>Send To...</option>
+                  <option>Copy To...</option>
+                  <option>Share to Commons</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html"> Midterm</a>
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html"> Final</a>
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+        </ul>
+
+        <table>
+          <tbody>
+            <tr>
+              <td><h3>Project 30% of Total</h3></td>
+              <td>
+                <select>
+                  <option selected>Edit</option>
+                  <option>Speed Grader</option>
+                  <option>Duplicate</option>
+                  <option>Delete</option>
+                  <option>Move To...</option>
+                  <option>Send To...</option>
+                  <option>Copy To...</option>
+                  <option>Share to Commons</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/Edit/screen.html"> Project</a>
+            <br />
+            <a href="#">Multiple Modules</a> | Not available yet
+          </li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>

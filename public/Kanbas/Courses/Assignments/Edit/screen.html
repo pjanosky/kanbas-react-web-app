@@ -1,43 +1,267 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Assignment Edit Screen</title>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/Kanbas/styles.css" rel="stylesheet" />
+    <link href="/Kanbas/Navigation/index.css" rel="stylesheet" />
+    <link href="/Kanbas/Courses/Navigation/index.css" rel="stylesheet" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td id="kanbas-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("kanbas-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
+    <div class="d-none d-md-block">
+      <ul class="wd-kanbas-navigation">
+        <li style="padding-bottom: 0px">
+          <a href="http://northeastern.edu">
+            <img
+              src="/images/northeastern.png"
+              style="width: 4em; height: 4em; padding-bottom: 0"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Account/Profile/screen.html">
+            <i class="fa-regular fa-circle-user wd-account"></i><br />
+            Account
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Dashboard/screen.html">
+            <i class="fa-solid fa-gauge-high"></i><br />
+            Dashboard
+          </a>
+        </li>
+        <li class="wd-active">
+          <a href="/Kanbas/Courses/Home/screen.html">
+            <i class="fa-solid fa-book"></i> <br />
+            Courses
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-calendar-days"></i> <br />
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-envelope-open-text"></i> <br />
+            Inbox
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-clock"></i> <br />
+            History
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-tv"></i> <br />
+            Studio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> <br />
+            Commons
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-circle-question"></i> <br />
+            Help
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-start">
+      <div class="d-none d-md-block wd-kanbas-nav-spacer"></div>
 
-        <td id="courses-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("courses-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-          load();
-        </script>
+      <div class="d-none d-md-block flex-shrink-1">
+        <ul class="wd-navigation">
+          <li>
+            <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Modules</a>
+          </li>
+          <li>
+            <a href="#">Piazza</a>
+          </li>
+          <li>
+            <a href="#">Zoom Meetings</a>
+          </li>
+          <li class="wd-active">
+            <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+          </li>
+          <li>
+            <a href="#">Quizzes</a>
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Grades/screen.html">Grades</a>
+          </li>
+          <li>
+            <a href="#">People</a>
+          </li>
+          <li>
+            <a href="#">Panopto Video</a>
+          </li>
+          <li>
+            <a href="#">Discussions</a>
+          </li>
+          <li>
+            <a href="#">Announcements</a>
+          </li>
+          <li>
+            <a href="#">Pages</a>
+          </li>
+          <li>
+            <a href="#">Files</a>
+          </li>
+          <li>
+            <a href="#">Rubrics</a>
+          </li>
+          <li>
+            <a href="#">Outcomes</a>
+          </li>
+          <li>
+            <a href="#">Collaborations</a>
+          </li>
+          <li>
+            <a href="#">Syllabus</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-grow-1">
+        <select>
+          <option>Edit</option>
+          <option selected>Speed Grader</option>
+          <option>Duplicate</option>
+          <option>Delete</option>
+          <option>Move To...</option>
+          <option>Send To...</option>
+          <option>Copy To...</option>
+          <option>Share to Commons</option>
+        </select>
+        <hr />
 
-        <td id="assignment-edit" valign="top" width="100%"></td>
-        <script>
-          (async () => {
-            let result = await fetch(
-              "/Kanbas/Courses/Assignments/Edit/index.html"
-            );
-            const kanbasNavigation = document.getElementById("assignment-edit");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
-      </tr>
-    </table>
+        <h2>Assignment Name</h2>
+        <form>
+          <input value="A1 - ENV + HTML" /> <br />
+          <br />
+          <textarea>This is the assignment description.</textarea>
+          <br />
+          <br />
+          <label>
+            Points <br />
+            <input type="number" value="100" />
+          </label>
+
+          <br />
+          <br />
+          <label>
+            Assignment Group <br />
+            <select>
+              <option selected>ASSIGNMENTS</option>
+            </select>
+          </label>
+
+          <br />
+          <br />
+          <label>
+            Display Grade as <br />
+            <select>
+              <option selected>Percentage</option>
+            </select>
+          </label>
+
+          <br />
+          <br />
+          <label>
+            Submission Type <br />
+            <select>
+              <option selected>Online</option>
+            </select>
+          </label>
+
+          <br />
+          <br />
+          <label>Online Entry Options</label> <br />
+          <input
+            id="entry-option-text"
+            type="checkbox"
+            name="online-entry-check"
+          />
+          <label for="entry-option-text"> Text Entry </label><br />
+
+          <input
+            id="entry-option-website"
+            type="checkbox"
+            name="online-entry-check"
+          />
+          <label for="entry-option-website"> Website URL </label><br />
+
+          <input
+            id="entry-option-media"
+            type="checkbox"
+            name="online-entry-check"
+          />
+          <label for="entry-option-media"> Media Recordings </label><br />
+
+          <input
+            id="entry-option-annotation"
+            type="checkbox"
+            name="online-entry-check"
+          />
+          <label for="entry-option-annotation"> Student Annotation </label
+          ><br />
+
+          <input
+            id="entry-option-file"
+            type="checkbox"
+            name="online-entry-check"
+          />
+          <label for="entry-option-file"> File Upload </label><br /><br />
+
+          Assign<br />
+          <label>
+            Assign to <br />
+            <input value="Everyone" />
+          </label>
+          <br />
+          <br />
+
+          <label>
+            Due <br />
+            <input type="date" value="2021-01-01" />
+          </label>
+          <br />
+          <br />
+
+          <label>
+            Available from <br />
+            <input type="date" value="2021-01-01" />
+          </label>
+          <br />
+          <br />
+
+          <label>
+            Until <br />
+            <input type="date" value="2021-01-01" />
+          </label>
+          <br />
+          <br />
+
+          <a href="/Kanbas/Courses/Assignments/screen.html">
+            <button type="button">Cancel</button>
+          </a>
+          <a href="/Kanbas/Courses/Assignments/screen.html">
+            <button type="button">Save</button>
+          </a>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

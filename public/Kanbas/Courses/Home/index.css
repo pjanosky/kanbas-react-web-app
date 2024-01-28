@@ -1,0 +1,120 @@
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.wd-modules {
+  margin: 5px;
+}
+
+.wd-modules > li {
+  background-color: lightgray;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 10px;
+  margin-left: 4px;
+}
+
+.wd-modules > li > ul {
+  border-left: 4px solid green;
+}
+
+.wd-modules > li > div > i,
+.wd-modules li > i {
+  color: gray;
+}
+
+.wd-modules li > div > i {
+  margin-right: 10px;
+}
+.wd-modules > li > ul > li > ul > li > div > i {
+  margin-right: 30px;
+}
+.wd-modules > li > ul > li > ul > li > ul > li > div > i {
+  margin-right: 50px;
+}
+.wd-modules > li li {
+  outline: 1px solid lightgray !important;
+}
+.wd-modules > li li > div {
+  padding: 10px;
+}
+
+.wd-modules > li {
+  margin-bottom: 20px;
+}
+
+.wd-course-home .wd-button-primary {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+  padding: 5px;
+}
+
+.wd-course-home .btn-primary-override {
+  background-color: red;
+  color: white;
+  border-radius: 0px;
+  border: 1px solid red;
+}
+.wd-course-home .btn-secondary-override {
+  background-color: lightgray;
+  color: black;
+  border-radius: 0px;
+  border: 1px solid gray;
+}
+
+.wd-course-home .form-select-override {
+  background-color: lightgray;
+  color: black;
+  border-radius: 0px;
+  border: 1px solid gray;
+  width: auto;
+}
+
+.wd-course-home .btn-success-override {
+  background-color: seagreen;
+  color: white;
+  border-radius: 0px;
+  border: 1px solid seagreen;
+  width: auto;
+}
+
+.wd-course-home .wd-course-status-btn {
+  width: 100%;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.wd-course-home a {
+  color: red;
+  text-decoration: none;
+}
+
+.wd-course-home h3 {
+  font-size: 20px;
+  color: lightslategray;
+}
+
+.wd-coming-up li > a > div > div > span,
+.wd-coming-up li > a > div > i {
+  color: gray;
+}
+
+.wd-coming-up {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.wd-coming-up li {
+  margin-bottom: 10px;
+}
+
+.wd-coming-up li i {
+  margin-right: 10px;
+}

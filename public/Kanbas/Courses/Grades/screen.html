@@ -1,41 +1,268 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Grades Screen</title>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/Kanbas/styles.css" rel="stylesheet" />
+    <link href="/Kanbas/Navigation/index.css" rel="stylesheet" />
+    <link href="/Kanbas/Courses/Navigation/index.css" rel="stylesheet" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td id="kanbas-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("kanbas-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
+    <div class="d-none d-md-block">
+      <ul class="wd-kanbas-navigation">
+        <li style="padding-bottom: 0px">
+          <a href="http://northeastern.edu">
+            <img
+              src="/images/northeastern.png"
+              style="width: 4em; height: 4em; padding-bottom: 0"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Account/Profile/screen.html">
+            <i class="fa-regular fa-circle-user wd-account"></i><br />
+            Account
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Dashboard/screen.html">
+            <i class="fa-solid fa-gauge-high"></i><br />
+            Dashboard
+          </a>
+        </li>
+        <li class="wd-active">
+          <a href="/Kanbas/Courses/Home/screen.html">
+            <i class="fa-solid fa-book"></i> <br />
+            Courses
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-calendar-days"></i> <br />
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-envelope-open-text"></i> <br />
+            Inbox
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-clock"></i> <br />
+            History
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-tv"></i> <br />
+            Studio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> <br />
+            Commons
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-circle-question"></i> <br />
+            Help
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-start">
+      <div class="d-none d-md-block wd-kanbas-nav-spacer"></div>
 
-        <td id="courses-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("courses-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-          load();
-        </script>
+      <div class="d-none d-md-block flex-shrink-1">
+        <ul class="wd-navigation">
+          <li>
+            <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Modules</a>
+          </li>
+          <li>
+            <a href="#">Piazza</a>
+          </li>
+          <li>
+            <a href="#">Zoom Meetings</a>
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+          </li>
+          <li>
+            <a href="#">Quizzes</a>
+          </li>
+          <li class="wd-active">
+            <a href="/Kanbas/Courses/Grades/screen.html">Grades</a>
+          </li>
+          <li>
+            <a href="#">People</a>
+          </li>
+          <li>
+            <a href="#">Panopto Video</a>
+          </li>
+          <li>
+            <a href="#">Discussions</a>
+          </li>
+          <li>
+            <a href="#">Announcements</a>
+          </li>
+          <li>
+            <a href="#">Pages</a>
+          </li>
+          <li>
+            <a href="#">Files</a>
+          </li>
+          <li>
+            <a href="#">Rubrics</a>
+          </li>
+          <li>
+            <a href="#">Outcomes</a>
+          </li>
+          <li>
+            <a href="#">Collaborations</a>
+          </li>
+          <li>
+            <a href="#">Syllabus</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-grow-1">
+        <form>
+          <select>
+            <option selected>Gradebook</option>
+          </select>
+          <button>Import</button>
+          <select>
+            <option selected>Export</option>
+          </select>
+          <button>Configure</button>
 
-        <td id="grades" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Grades/index.html");
-            const kanbasNavigation = document.getElementById("grades");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
-      </tr>
-    </table>
+          <h3>Student Names</h3>
+          <input type="text" placeholder="Search Students" />
+
+          <h3>Assignment Names</h3>
+          <input type="text" placeholder="Search Assignments" /> <br />
+          <br />
+
+          <button>Apply Filters</button>
+        </form>
+        <br />
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>
+                A1 SETUP <br />
+                Out of 100
+              </th>
+              <th>
+                A2 HTML <br />
+                Out of 100
+              </th>
+              <th>
+                A3 CSS <br />
+                Out of 100
+              </th>
+              <th>
+                A4 BOOTSTRAP <br />
+                Out of 100
+              </th>
+              <th>
+                A5 JAVASCRIPT <br />
+                Out of 100
+              </th>
+              <th>
+                A6 REACT <br />
+                Out of 100
+              </th>
+              <th>
+                A7 REDUX <br />
+                Out of 100
+              </th>
+              <th>
+                A8 NODE <br />
+                Out of 100
+              </th>
+              <th>
+                A9 MONGO <br />
+                Out of 100
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alice Wonderland</td>
+              <td align="center">98</td>
+              <td align="center">89</td>
+              <td align="center"><input value="87" cols="1" size="4" /></td>
+              <td align="center">90</td>
+              <td align="center">89</td>
+              <td align="center">94</td>
+              <td align="center">88</td>
+              <td align="center">87</td>
+              <td align="center">100</td>
+            </tr>
+
+            <tr>
+              <td>Princes Leia</td>
+              <td align="center">98</td>
+              <td align="center">80</td>
+              <td align="center">87</td>
+              <td align="center"><input value="86" cols="1" size="4" /></td>
+              <td align="center">100</td>
+              <td align="center">94</td>
+              <td align="center">85</td>
+              <td align="center">84</td>
+              <td align="center">92</td>
+            </tr>
+            <tr>
+              <td>Luke Skywalker</td>
+              <td align="center">99</td>
+              <td align="center">88</td>
+              <td align="center">97</td>
+              <td align="center">82</td>
+              <td align="center"><input value="96" cols="1" size="4" /></td>
+              <td align="center">93</td>
+              <td align="center">95</td>
+              <td align="center">100</td>
+              <td align="center">93</td>
+            </tr>
+            <tr>
+              <td>Han Solo</td>
+              <td align="center"><input value="83" cols="1" size="4" /></td>
+              <td align="center">99</td>
+              <td align="center">94</td>
+              <td align="center">98</td>
+              <td align="center">86</td>
+              <td align="center">85</td>
+              <td align="center">86</td>
+              <td align="center"><input value="80" cols="1" size="4" /></td>
+              <td align="center">84</td>
+            </tr>
+            <tr>
+              <td>Lando Calresian</td>
+              <td align="center">83</td>
+              <td align="center"><input value="92" cols="1" size="4" /></td>
+              <td align="center"><input value="80" cols="1" size="4" /></td>
+              <td align="center">80</td>
+              <td align="center">92</td>
+              <td align="center">92</td>
+              <td align="center">94</td>
+              <td align="center">87</td>
+              <td align="center">95</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

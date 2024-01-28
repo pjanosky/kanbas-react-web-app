@@ -1,41 +1,564 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Home Screen</title>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/Kanbas/styles.css" rel="stylesheet" />
+    <link href="/Kanbas/Navigation/index.css" rel="stylesheet" />
+    <link href="/Kanbas/Courses/Navigation/index.css" rel="stylesheet" />
+    <link href="/Kanbas/Courses/Home/index.css" rel="stylesheet" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td id="kanbas-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("kanbas-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
+    <div class="d-none d-md-block">
+      <ul class="wd-kanbas-navigation">
+        <li style="padding-bottom: 0px">
+          <a href="http://northeastern.edu">
+            <img
+              src="/images/northeastern.png"
+              style="width: 4em; height: 4em; padding-bottom: 0"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Account/Profile/screen.html">
+            <i class="fa-regular fa-circle-user wd-account"></i><br />
+            Account
+          </a>
+        </li>
+        <li>
+          <a href="/Kanbas/Dashboard/screen.html">
+            <i class="fa-solid fa-gauge-high"></i><br />
+            Dashboard
+          </a>
+        </li>
+        <li class="wd-active">
+          <a href="/Kanbas/Courses/Home/screen.html">
+            <i class="fa-solid fa-book"></i> <br />
+            Courses
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-calendar-days"></i> <br />
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-envelope-open-text"></i> <br />
+            Inbox
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-clock"></i> <br />
+            History
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-tv"></i> <br />
+            Studio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> <br />
+            Commons
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-regular fa-circle-question"></i> <br />
+            Help
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex">
+      <div class="d-none d-md-block wd-kanbas-nav-spacer"></div>
 
-        <td id="courses-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("courses-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-          load();
-        </script>
+      <div class="d-none d-md-block flex-shrink-1">
+        <ul class="wd-navigation">
+          <li class="wd-active">
+            <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Modules</a>
+          </li>
+          <li>
+            <a href="#">Piazza</a>
+          </li>
+          <li>
+            <a href="#">Zoom Meetings</a>
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+          </li>
+          <li>
+            <a href="#">Quizzes</a>
+          </li>
+          <li>
+            <a href="/Kanbas/Courses/Grades/screen.html">Grades</a>
+          </li>
+          <li>
+            <a href="#">People</a>
+          </li>
+          <li>
+            <a href="#">Panopto Video</a>
+          </li>
+          <li>
+            <a href="#">Discussions</a>
+          </li>
+          <li>
+            <a href="#">Announcements</a>
+          </li>
+          <li>
+            <a href="#">Pages</a>
+          </li>
+          <li>
+            <a href="#">Files</a>
+          </li>
+          <li>
+            <a href="#">Rubrics</a>
+          </li>
+          <li>
+            <a href="#">Outcomes</a>
+          </li>
+          <li>
+            <a href="#">Collaborations</a>
+          </li>
+          <li>
+            <a href="#">Syllabus</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+        </ul>
+      </div>
 
-        <td id="home" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Courses/Home/index.html");
-            const kanbasNavigation = document.getElementById("home");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
-      </tr>
-    </table>
+      <div class="flex-grow-1 flex-shrink-1 p-3">
+        <div class="wd-course-home">
+          <div class="d-flex justify-content-end flex-wrap gap-1">
+            <button class="btn btn-secondary btn-secondary-override">
+              Collapse All
+            </button>
+            <button class="btn btn-secondary btn-secondary-override">
+              View Progress
+            </button>
+            <select class="form-select form-select-override">
+              <option selected>Publish All</option>
+            </select>
+            <button class="btn btn-primary btn-primary-override">
+              <i class="fa fa-plus"></i>
+              Module
+            </button>
+            <button class="btn btn-secondary btn-secondary-override">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+          </div>
+          <hr />
+
+          <ul class="list-group wd-modules">
+            <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                <i class="fa-solid fa-caret-down"></i>
+                <span class="flex-grow-1">Week 0 - INTO </span>
+                <span class="flex-shrink-0">
+                  <i class="fa fa-check-circle text-success"></i>
+                  <i class="fa fa-plus ms-2"></i>
+                  <i class="fa fa-ellipsis-v ms-2"></i>
+                </span>
+              </div>
+
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                    <span class="flex-grow-1">LEARNING OBJECTIVES</span>
+                    <span class="flex-shrink-0">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Introduction to the course
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Learn what is Web Development
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Creating a development environment
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Creating a Web Application
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Getting started with the 1st assignment
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                    <span class="flex-grow-1">READING</span>
+                    <span class="flex-shrink-0">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Full Stack Developer - Chapter 1 - Introduction
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Full Stack Developer - Chapter 2 - Creating User
+                          Interfaces With HTML
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                    <span class="flex-grow-1">SLIDES</span>
+                    <span class="flex-shrink-0">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          <a href="#">
+                            Introduction to Web Development
+                            <i
+                              class="fa-solid fa-arrow-right-from-bracket ms-1"
+                            >
+                            </i>
+                          </a>
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          <a href="#">
+                            Creating an HTTP server with Node.js
+                            <i
+                              class="fa-solid fa-arrow-right-from-bracket ms-1"
+                            >
+                            </i>
+                          </a>
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          <a href="#">
+                            Creating a React Application
+                            <i
+                              class="fa-solid fa-arrow-right-from-bracket ms-1"
+                            >
+                            </i>
+                          </a>
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                <i class="fa-solid fa-caret-down"></i>
+                <span class="flex-grow-1">Week 1 - HTML</span>
+                <span class="flex-shrink-0">
+                  <i class="fa fa-check-circle text-success"></i>
+                  <i class="fa fa-plus ms-2"></i>
+                  <i class="fa fa-ellipsis-v ms-2"></i>
+                </span>
+              </div>
+
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                    <span class="flex-grow-1">LEARNING OBJECTIVES</span>
+                    <span class="flex-shrink-0">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Learn how to create user interfaces with HTML
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Keep working on assignment 1
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Deploy the assignment to Netlify
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                    <span class="flex-grow-1">READING</span>
+                    <span class="flex-shrink-0">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Full Stack Developer - Chapter 1 - Introduction
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-grip-vertical flex-shrink-0"></i>
+                        <span class="flex-grow-1">
+                          Full Stack Developer - Chapter 2 - Creating User
+                          Interfaces With HTML
+                        </span>
+                        <span class="flex-shrink-0">
+                          <i class="fa fa-check-circle text-success"></i>
+                          <i class="fa fa-ellipsis-v ms-2"></i>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="d-none d-lg-block flex-shrink-0 p-3" style="width: 275px">
+        <div class="wd-course-home">
+          <h3>Course Status</h3>
+          <div class="d-flex flex-fill w-100 mb-3">
+            <button class="btn btn-secondary btn-secondary-override w-50">
+              <i class="fa-solid fa-ban"></i>
+              Unpublish
+            </button>
+            <button disabled class="btn btn-success btn-success-override w-50">
+              <i class="fa fa-check-circle"></i>
+              Published
+            </button>
+          </div>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-file-import"></i>
+            Import Existing Content
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Import From Commons
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-crosshairs"></i>
+            Choose Home Page
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-chart-simple"></i>
+            View Course Stream
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-bullhorn"></i>
+            New Announcements
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-solid fa-chart-simple"></i>
+            New Analytics
+          </button>
+          <button
+            class="btn btn-secondary btn-secondary-override wd-course-status-btn"
+          >
+            <i class="fa-regular fa-bell"></i>
+            View Course Notifications
+          </button>
+
+          <div class="d-flex justify-content-between align-items-baseline">
+            <h3 class="m-0 p-0 mt-3">Coming Up</h3>
+            <span>
+              <i class="fa-regular fa-calendar me-2"></i>
+              <a class="float-end" href="#">View Calendar</a>
+            </span>
+          </div>
+          <hr class="p-0 m-0 mb-2" />
+
+          <ul class="wd-coming-up">
+            <li>
+              <a href="#">
+                <div class="d-flex align-items-baseline">
+                  <i class="fa-regular fa-calendar"></i>
+                  <div>
+                    Lecture <br />
+                    <span> CS4550.12631.202410 Sep 7 at 11:45am </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="d-flex align-items-baseline">
+                  <i class="fa-regular fa-calendar"></i>
+                  <div>
+                    Lecture <br />
+                    <span> CS4550.12631.202410 Sep 11 at 11:45am </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="d-flex align-items-baseline">
+                  <i class="fa-regular fa-calendar"></i>
+                  <div>
+                    Lecture <br />
+                    <span> CS5610 06 SP23 LEcture Sep 11 at 6pm </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

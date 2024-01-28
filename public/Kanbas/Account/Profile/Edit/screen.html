@@ -1,41 +1,105 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Profile Screen</title>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Kanbas/styles.css" />
+    <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+    <link rel="stylesheet" href="/Kanbas/Dashboard/index.css" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td id="kanbas-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Navigation/index.html");
-            const kanbasNavigation =
-              document.getElementById("kanbas-navigation");
-            kanbasNavigation.innerHTML = await result.text();
-          })();
-        </script>
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td valign="top" style="width: 80px">
+            <ul class="wd-kanbas-navigation">
+              <li style="padding-bottom: 0px">
+                <a href="http://northeastern.edu">
+                  <img
+                    src="/images/northeastern.png"
+                    style="width: 4em; height: 4em; padding-bottom: 0"
+                  />
+                </a>
+              </li>
+              <li class="wd-active">
+                <a href="/Kanbas/Account/Profile/screen.html">
+                  <i class="fa-regular fa-circle-user wd-account"></i><br />
+                  Account
+                </a>
+              </li>
+              <li>
+                <a href="/Kanbas/Dashboard/screen.html">
+                  <i class="fa-solid fa-gauge-high"></i><br />
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="/Kanbas/Courses/Home/screen.html">
+                  <i class="fa-solid fa-book"></i> <br />
+                  Courses
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-regular fa-calendar-days"></i> <br />
+                  Calendar
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-solid fa-envelope-open-text"></i> <br />
+                  Inbox
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-regular fa-clock"></i> <br />
+                  History
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-solid fa-tv"></i> <br />
+                  Studio
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i> <br />
+                  Commons
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-regular fa-circle-question"></i> <br />
+                  Help
+                </a>
+              </li>
+            </ul>
+          </td>
 
-        <td id="profile-navigation" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Account/Navigation/index.html");
-            const profileNavigation =
-              document.getElementById("profile-navigation");
-            profileNavigation.innerHTML = await result.text();
-          })();
-          load();
-        </script>
+          <td id="profile-navigation" valign="top"></td>
+          <script>
+            (async () => {
+              let result = await fetch("/Kanbas/Account/Navigation/index.html");
+              const profileNavigation =
+                document.getElementById("profile-navigation");
+              profileNavigation.innerHTML = await result.text();
+            })();
+            load();
+          </script>
 
-        <td id="edit-profile" valign="top"></td>
-        <script>
-          (async () => {
-            let result = await fetch("/Kanbas/Account/Profile/Edit/index.html");
-            const editProfile = document.getElementById("edit-profile");
-            editProfile.innerHTML = await result.text();
-          })();
-        </script>
-      </tr>
+          <td id="edit-profile" valign="top"></td>
+          <script>
+            (async () => {
+              let result = await fetch(
+                "/Kanbas/Account/Profile/Edit/index.html"
+              );
+              const editProfile = document.getElementById("edit-profile");
+              editProfile.innerHTML = await result.text();
+            })();
+          </script>
+        </tr>
+      </tbody>
     </table>
   </body>
 </html>

@@ -1,0 +1,10 @@
+.wd-course-title a {
+  color: red;
+  font-size: large;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.wd-course-title span {
+  vertical-align: middle;
+}

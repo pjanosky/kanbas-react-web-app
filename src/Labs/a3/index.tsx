@@ -12,11 +12,11 @@ function Assignment3() {
   return (
     <div className="container">
       <h1>Assignment 3</h1>
-      <JavaScript />
-      <PathParameters />
-      <Classes />
-      <Styles />
       <ConditionalOutput />
+      <Styles />
+      <Classes />
+      <PathParameters />
+      <JavaScript />
       <Highlight>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione
         eaque illo minus cum, saepe totam vel nihil repellat nemo explicabo

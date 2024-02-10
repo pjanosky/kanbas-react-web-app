@@ -1,0 +1,24 @@
+.wd-dashboard .card-body .card-title {
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  line-height: 1.2em;
+  height: 2.4em;
+}
+
+.wd-dashboard .d-flex div {
+  width: 260px;
+}
+
+.wd-dashboard .card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.wd-dashboard .card p {
+  line-height: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

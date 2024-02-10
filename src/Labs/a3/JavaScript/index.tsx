@@ -10,6 +10,7 @@ import House from "./json/House";
 import Spreading from "./json/Spreading";
 import Destructing from "./json/Destructing";
 import FunctionDestructing from "./functions/FunctionDestructing";
+import TernaryOperator from "./conditionals/TernaryOperator";
 
 function JavaScript() {
   console.log("Hello World!");
@@ -20,6 +21,7 @@ function JavaScript() {
       <VariableTypes />
       <BooleanVariables />
       <IfElse />
+      <TernaryOperator />
       <WorkingWithFunctions />
       <WorkingWithArrays />
       <JsonStringify />

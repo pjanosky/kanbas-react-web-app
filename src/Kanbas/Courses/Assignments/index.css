@@ -1,0 +1,20 @@
+.wd-assignments a {
+  text-decoration: none;
+  color: black;
+}
+
+.wd-assignment-details > span {
+  white-space: pre-wrap;
+  color: grey;
+}
+
+.wd-assignments .pill-override {
+  color: grey;
+  border-radius: 12px;
+  height: 24px;
+  padding: 8px;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

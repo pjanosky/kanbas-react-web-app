@@ -1,4 +1,4 @@
-import { courses } from "../../Kanbas/Database";
+import { Course } from "../../Kanbas/Database";
 import {
   Link,
   Navigate,
@@ -8,14 +8,16 @@ import {
   useParams,
 } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
-import CourseNavigation from "./Navigation";
+import CourseNavigation from "./Navigation/Large";
 import Modules from "./Modules";
 import "./index.css";
 import { FaChevronRight } from "react-icons/fa";
 import Home from "./Home";
 import Assignments from "./Assignments";
+import KanbasNavigation from "../Navigation";
+import CourseNavigationSmall from "./Navigation/Small";
 
-function Courses() {
+function Courses({ courses }: { courses: Course[] }) {
   const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
@@ -43,8 +45,15 @@ function Courses() {
   const navBarHeight = "50px";
 
   return (
-    <div>
-      <div className="wd-course-title p-3" style={{ height: navBarHeight }}>
+    <KanbasNavigation
+      accessory={(hide) => <CourseNavigationSmall hide={hide} />}
+      title={course?.number}
+      subtitle={currentPage}
+    >
+      <div
+        className="d-none d-md-block wd-course-title p-3"
+        style={{ height: navBarHeight }}
+      >
         <span>
           <HiMiniBars3 className="me-2" />
           <Link to="Home">
@@ -96,7 +105,7 @@ function Courses() {
           </Routes>
         </div>
       </div>
-    </div>
+    </KanbasNavigation>
   );
 }
 export default Courses;

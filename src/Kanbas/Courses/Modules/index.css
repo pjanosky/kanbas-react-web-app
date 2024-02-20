@@ -1,5 +1,6 @@
 .wd-modules,
-.wd-modules * {
+.wd-modules ul,
+.wd-modules li {
   border-radius: 0%;
   border: none;
   margin: 0px;
@@ -12,10 +13,10 @@
   margin-bottom: 20px;
 }
 
-.wd-modules > li div {
+.wd-modules li > div {
   padding: 16px;
 }
-.wd-modules > li li div {
+.wd-modules > li li > div {
   padding-left: 12px;
 }
 
@@ -29,49 +30,17 @@
 
 .wd-modules > li > div > svg {
   color: gray;
-  /* margin-right: 8px; */
 }
 .wd-modules li li div > svg {
   color: black;
-  /* margin-right: 8px; */
 }
 
 .wd-modules li li div > span > svg {
   color: black;
-  /* margin-left: 8px; */
 }
 .wd-modules > li > div > span > svg {
   color: grey;
   margin-left: 8px;
-}
-
-.btn-primary-override {
-  background-color: red;
-  color: white;
-  border-radius: 0px;
-  border: 1px solid red;
-}
-.btn-secondary-override {
-  background-color: lightgray;
-  color: black;
-  border-radius: 0px;
-  border: 1px solid gray;
-}
-
-.form-select-override {
-  background-color: lightgray;
-  color: black;
-  border-radius: 0px;
-  border: 1px solid gray;
-  width: auto;
-}
-
-.btn-success-override {
-  background-color: seagreen;
-  color: white;
-  border-radius: 0px;
-  border: 1px solid seagreen;
-  width: auto;
 }
 
 button svg {

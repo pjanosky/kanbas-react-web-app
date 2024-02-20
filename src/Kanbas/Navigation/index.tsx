@@ -1,57 +1,63 @@
-import { Link, useLocation } from "react-router-dom";
 import "./index.css";
-import {
-  FaTachometerAlt,
-  FaRegUserCircle,
-  FaBook,
-  FaRegCalendarAlt,
-  FaInbox,
-  FaRegClock,
-  FaTv,
-  FaSignOutAlt,
-  FaRegQuestionCircle,
-} from "react-icons/fa";
+import React, { useState } from "react";
+import KanbasNavigationSmall from "./Small";
+import KanbasNavigationLarge from "./Large";
+import { HiChevronDown, HiMiniBars3 } from "react-icons/hi2";
+import { FaTimes } from "react-icons/fa";
+import { useLocation } from "react-router";
 
-function KanbasNavigation() {
-  const links = [
-    {
-      label: "Account",
-      icon: <FaRegUserCircle className=" wd-account" />,
-    },
-    { label: "Dashboard", icon: <FaTachometerAlt /> },
-    { label: "Courses", icon: <FaBook /> },
-    { label: "Calendar", icon: <FaRegCalendarAlt /> },
-    { label: "Inbox", icon: <FaInbox /> },
-    { label: "History", icon: <FaRegClock /> },
-    { label: "Studio", icon: <FaTv /> },
-    { label: "Commons", icon: <FaSignOutAlt /> },
-    { label: "Help", icon: <FaRegQuestionCircle /> },
-  ];
+function KanbasNavigation({
+  children,
+  title = undefined,
+  subtitle = undefined,
+  accessory = undefined,
+}: {
+  children: React.ReactNode;
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  accessory?: ((hide: () => void) => React.ReactNode) | undefined;
+}) {
+  const [showKanbasNav, setShowKanbasNav] = useState(false);
+  const [showAccessory, setShowAccessory] = useState(false);
   const { pathname } = useLocation();
-  return (
-    <ul className="wd-kanbas-navigation">
-      <li style={{ paddingBottom: "0px" }}>
-        <a href="http://northeastern.edu">
-          <img
-            src="/images/northeastern.png"
-            style={{ width: "4em", height: "4em", paddingBottom: "0px" }}
-            alt="Northeastern University Logo"
+  const defaultTitle = pathname.split("/").pop();
+
+  return showKanbasNav ? (
+    <KanbasNavigationSmall hide={() => setShowKanbasNav(false)}>
+      <div></div>
+    </KanbasNavigationSmall>
+  ) : (
+    <div>
+      <div className="d-md-none wd-nav-bar d-flex justify-content-between align-items-center">
+        <HiMiniBars3 onClick={() => setShowKanbasNav((show) => !show)} />
+
+        <div className="text-center">
+          {title || defaultTitle}
+          <br />
+          {subtitle}
+        </div>
+        {showAccessory ? (
+          <FaTimes onClick={() => setShowAccessory((show) => !show)} />
+        ) : (
+          <HiChevronDown
+            className={`${accessory ? "" : "invisible"}`}
+            onClick={() => setShowAccessory((show) => !show)}
           />
-        </a>
-      </li>
-      {links.map((link, index) => (
-        <li
-          className={pathname.includes(link.label) ? "wd-active" : ""}
-          key={index}
-        >
-          <Link to={`/Kanbas/${link.label}`}>
-            {link.icon}
-            <br />
-            {link.label}
-          </Link>
-        </li>
-      ))}
-    </ul>
+        )}
+      </div>
+      <div className="d-md-none shadow">
+        {showAccessory && accessory && accessory(() => setShowAccessory(false))}
+      </div>
+      <div className="d-flex align-items-stretch">
+        <div className="d-none d-md-block">
+          <KanbasNavigationLarge />
+        </div>
+        <div className="wd-kanbas-nav-spacer d-none d-md-block"></div>
+        <div className="flex-grow-1" style={{ height: "100vh" }}>
+          {!showKanbasNav && children}
+        </div>
+      </div>
+    </div>
   );
 }
 

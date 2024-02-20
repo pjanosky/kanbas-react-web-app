@@ -5,35 +5,6 @@
   padding: 5px;
 }
 
-.wd-course-home .btn-primary-override {
-  background-color: red;
-  color: white;
-  border-radius: 0px;
-  border: 1px solid red;
-}
-.wd-course-home .btn-secondary-override {
-  background-color: lightgray;
-  color: black;
-  border-radius: 0px;
-  border: 1px solid gray;
-}
-
-.wd-course-home .form-select-override {
-  background-color: lightgray;
-  color: black;
-  border-radius: 0px;
-  border: 1px solid gray;
-  width: auto;
-}
-
-.wd-course-home .btn-success-override {
-  background-color: seagreen;
-  color: white;
-  border-radius: 0px;
-  border: 1px solid seagreen;
-  width: auto;
-}
-
 .wd-course-home .wd-course-status-btn {
   width: 100%;
   text-align: left;

@@ -22,6 +22,11 @@ button > svg {
   border-radius: 2px;
   border: 1px solid red;
 }
+.btn-primary-override:hover {
+  background-color: darkred;
+  border: 1px solid darkred;
+}
+
 .btn-secondary-override {
   background-color: lightgray;
   color: black;
@@ -43,6 +48,11 @@ button > svg {
   border-radius: 2px;
   border: 1px solid seagreen;
   width: auto;
+}
+
+.text-input-override {
+  border-radius: 2px;
+  border: 1px solid lightgray;
 }
 
 button svg {

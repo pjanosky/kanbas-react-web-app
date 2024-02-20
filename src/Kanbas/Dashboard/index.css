@@ -22,3 +22,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.wd-dashboard a {
+  text-decoration: none;
+}

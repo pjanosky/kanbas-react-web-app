@@ -1,35 +1,136 @@
 import { Navigate, Route, Routes } from "react-router";
-import KanbasNavigation from "./Navigation";
 import Dashboard from "./Dashboard";
 import "./Navigation/index.css";
 import Courses from "./Courses";
+import { useState } from "react";
+import db from "./Database";
+import store from "./store";
+import { Provider } from "react-redux";
+import "./index.css";
+import KanbasNavigation from "./Navigation";
 
 function Kanbas() {
+  const [courses, setCourses] = useState(db.courses);
+  const [course, setCourse] = useState({
+    _id: "0",
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+    image: "new-course.jpg",
+  });
+  const addNewCourse = () => {
+    const newCourse = {
+      ...course,
+      _id: new Date().getTime().toString(),
+      image: "new-course.jpg",
+    };
+    setCourses([...courses, { ...course, ...newCourse }]);
+  };
+  const deleteCourse = (courseId: string) => {
+    setCourses(courses.filter((course) => course._id !== courseId));
+  };
+  const updateCourse = () => {
+    setCourses(
+      courses.map((c) => {
+        if (c._id === course._id) {
+          return course;
+        } else {
+          return c;
+        }
+      })
+    );
+  };
   return (
-    <div className="d-flex align-items-stretch">
-      <div className="d-none d-md-block">
-        <KanbasNavigation />
-      </div>
-      <div className="wd-kanbas-nav-spacer d-none d-md-block"></div>
-      <div className="flex-grow-1" style={{ height: "100vh" }}>
-        <Routes>
-          <Route
-            path="/"
-            element={<Navigate to="Dashboard" replace={true} />}
-          />
-          <Route path="Account" element={<h1>Account</h1>} />
-          <Route path="Dashboard" element={<Dashboard />} />
-          <Route path="Courses/:courseId/*" element={<Courses />} />
-          <Route path="Courses/*" element={<h1>Courses</h1>} />
-          <Route path="Calendar" element={<h1>Calendar</h1>} />
-          <Route path="Inbox" element={<h1>Inbox</h1>} />
-          <Route path="History" element={<h1>History</h1>} />
-          <Route path="Studio" element={<h1>Studio</h1>} />
-          <Route path="Commons" element={<h1>Commons</h1>} />
-          <Route path="Help" element={<h1>Help</h1>} />
-        </Routes>
-      </div>
-    </div>
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<Navigate to="Dashboard" replace={true} />} />
+        <Route
+          path="Account"
+          element={
+            <KanbasNavigation>
+              <h1>Account</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Dashboard"
+          element={
+            <KanbasNavigation>
+              <Dashboard
+                courses={courses}
+                course={course}
+                setCourse={setCourse}
+                addNewCourse={addNewCourse}
+                deleteCourse={deleteCourse}
+                updateCourse={updateCourse}
+              />
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Courses/:courseId/*"
+          element={<Courses courses={courses} />}
+        />
+
+        <Route
+          path="Courses/*"
+          element={
+            <KanbasNavigation>
+              <h1>Courses</h1>{" "}
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Calendar"
+          element={
+            <KanbasNavigation>
+              <h1>Calendar</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Inbox"
+          element={
+            <KanbasNavigation>
+              <h1>Inbox</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="History"
+          element={
+            <KanbasNavigation>
+              <h1>History</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Studio"
+          element={
+            <KanbasNavigation>
+              <h1>Studio</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Commons"
+          element={
+            <KanbasNavigation>
+              <h1>Commons</h1>
+            </KanbasNavigation>
+          }
+        />
+        <Route
+          path="Help"
+          element={
+            <KanbasNavigation>
+              <h1>Help</h1>
+            </KanbasNavigation>
+          }
+        />
+      </Routes>
+    </Provider>
   );
 }
 export default Kanbas;

@@ -1,0 +1,21 @@
+.wd-navigation-sm {
+  background-color: white;
+  list-style: none;
+  padding: 0px;
+}
+.wd-navigation-sm li {
+  padding: 5px;
+  margin-left: 2px;
+}
+.wd-navigation-sm li.wd-active {
+  font-weight: bolder;
+}
+
+.wd-navigation-sm .wd-link {
+  color: red;
+  text-decoration: none;
+}
+
+.wd-navigation-sm svg {
+  margin-right: 5px;
+}

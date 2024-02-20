@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./index.css";
 
-function CourseNavigation() {
+function CourseNavigationLarge() {
   const links = [
     "Home",
     "Modules",
@@ -35,4 +35,4 @@ function CourseNavigation() {
     </ul>
   );
 }
-export default CourseNavigation;
+export default CourseNavigationLarge;

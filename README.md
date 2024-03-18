@@ -1,6 +1,6 @@
-# Kanbas
+# Kanbas React Web App
 
-A recreation of the Canvas learning management website. This project is a work in progress as a part of CS4550 at Northeastern University.
+The front end for a recreation of the Canvas learning management website. This project is a work in progress as a part of CS4550 at Northeastern University.
 
 See a demo at [https://pjanosky-kanbas.netlify.app/](https://pjanosky-kanbas.netlify.app/)
 

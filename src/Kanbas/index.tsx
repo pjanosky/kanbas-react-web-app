@@ -2,15 +2,25 @@ import { Navigate, Route, Routes } from "react-router";
 import Dashboard from "./Dashboard";
 import "./Navigation/index.css";
 import Courses from "./Courses";
-import { useState } from "react";
-import db from "./Database";
+import { useCallback, useEffect, useState } from "react";
+import { Course } from "./Database";
 import store from "./store";
 import { Provider } from "react-redux";
 import "./index.css";
 import KanbasNavigation from "./Navigation";
+import axios from "axios";
 
 function Kanbas() {
-  const [courses, setCourses] = useState(db.courses);
+  const [courses, setCourses] = useState([] as Course[]);
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  const COURSES_API = `${API_BASE}/api/courses`;
+  const findAllCourses = useCallback(async () => {
+    const response = await axios.get(COURSES_API);
+    setCourses(response.data);
+  }, [COURSES_API]);
+  useEffect(() => {
+    findAllCourses();
+  }, [findAllCourses]);
   const [course, setCourse] = useState({
     _id: "0",
     name: "New Course",
@@ -19,28 +29,26 @@ function Kanbas() {
     endDate: "2023-12-15",
     image: "new-course.jpg",
   });
-  const addNewCourse = () => {
-    const newCourse = {
-      ...course,
-      _id: new Date().getTime().toString(),
-      image: "new-course.jpg",
-    };
-    setCourses([...courses, { ...course, ...newCourse }]);
+  const addNewCourse = async () => {
+    const response = await axios.post(COURSES_API, course);
+    setCourses([...courses, response.data]);
   };
-  const deleteCourse = (courseId: string) => {
-    setCourses(courses.filter((course) => course._id !== courseId));
+  const deleteCourse = async (courseId: string) => {
+    await axios.delete(`${COURSES_API}/${courseId}`);
+    setCourses(courses.filter((c) => c._id !== courseId));
   };
-  const updateCourse = () => {
+  const updateCourse = async () => {
+    await axios.put(`${COURSES_API}/${course._id}`, course);
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
           return course;
-        } else {
-          return c;
         }
+        return c;
       })
     );
   };
+
   return (
     <Provider store={store}>
       <Routes>

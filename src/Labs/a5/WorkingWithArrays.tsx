@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Todo = {
   id: number;
@@ -10,7 +10,8 @@ type Todo = {
 };
 
 function WorkingWithArrays() {
-  const API = "http://localhost:4000/a5/todos";
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  const API = `${API_BASE}/a5/todos`;
   const [todo, setTodo] = useState({
     id: 1,
     title: "NodeJS Assignment",
@@ -19,10 +20,10 @@ function WorkingWithArrays() {
     completed: false,
   });
   const [todos, setTodos] = useState([] as Todo[]);
-  const fetchTodos = async () => {
+  const fetchTodos = useCallback(async () => {
     const response = await axios.get(API);
     setTodos(response.data);
-  };
+  }, [API]);
   // const removeTodo = async (todo) => {
   //   const response = await axios
   //     .get(`${API}/${todo.id}/delete`);
@@ -55,7 +56,7 @@ function WorkingWithArrays() {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
   return (
     <div>

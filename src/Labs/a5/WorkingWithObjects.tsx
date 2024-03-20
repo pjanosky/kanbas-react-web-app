@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 function WorkingWithObjects() {
-  const ASSIGNMENT_URL = "http://localhost:4000/a5/assignment";
-  const MODULE_URL = "http://localhost:4000/a5/module";
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  const ASSIGNMENT_URL = `${API_BASE}/a5/assignment`;
+  const MODULE_URL = `${API_BASE}/a5/module`;
   const [assignment, setAssignment] = useState({
     id: 1,
     title: "NodeJS Assignment",
@@ -17,10 +18,10 @@ function WorkingWithObjects() {
     description: "Learn NodeJS and ExpressJS",
     course: "CS4550",
   });
-  const fetchAssignment = async () => {
+  const fetchAssignment = useCallback(async () => {
     const response = await axios.get(`${ASSIGNMENT_URL}`);
     setAssignment(response.data);
-  };
+  }, [ASSIGNMENT_URL]);
   const updateTitle = async () => {
     const response = await axios.get(
       `${ASSIGNMENT_URL}/title/${assignment.title}`
@@ -29,7 +30,7 @@ function WorkingWithObjects() {
   };
   useEffect(() => {
     fetchAssignment();
-  }, []);
+  }, [fetchAssignment]);
 
   return (
     <div>

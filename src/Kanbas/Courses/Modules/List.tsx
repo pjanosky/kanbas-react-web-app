@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Module } from "../../Database";
 import {
@@ -16,8 +16,10 @@ import {
   deleteModule,
   updateModule,
   setModule,
+  setModules,
 } from "./modulesReducer";
 import { KanbasState } from "../../store";
+import * as client from "./client";
 
 function ModuleList() {
   const { courseId } = useParams();
@@ -27,12 +29,32 @@ function ModuleList() {
   const module: Module = useSelector(
     (state: KanbasState) => state.modulesReducer.module
   );
-  const dispatch = useDispatch();
   const [selectedModule, setSelectedModule] = useState(
     moduleList.length === 0 ? undefined : moduleList[0]
   );
-  console.log("MODULE LIST", moduleList);
-  console.log("SELECTED", selectedModule);
+
+  const dispatch = useDispatch();
+  const handleAddModule = () => {
+    client.createModule(courseId || "", module).then((module) => {
+      dispatch(addModule(module));
+    });
+  };
+  const handleDeleteModule = (moduleId: string) => {
+    client.deleteModule(moduleId).then((status) => {
+      dispatch(deleteModule(moduleId));
+    });
+  };
+  const handleUpdateModule = async () => {
+    await client.updateModule(module);
+    dispatch(updateModule(module));
+  };
+
+  useEffect(() => {
+    client
+      .findModulesForCourse(courseId || "")
+      .then((modules) => dispatch(setModules(modules)));
+  }, [courseId, dispatch]);
+
   return (
     <div className="wd-course-home">
       <div className="d-flex justify-content-end flex-wrap gap-1">
@@ -84,13 +106,13 @@ function ModuleList() {
         />
         <button
           className="btn btn-primary btn-primary-override me-2"
-          onClick={() => dispatch(addModule({ ...module, course: courseId }))}
+          onClick={handleAddModule}
         >
           Add
         </button>
         <button
           className="btn btn-primary btn-primary-override"
-          onClick={() => dispatch(updateModule(module))}
+          onClick={handleUpdateModule}
         >
           Update
         </button>
@@ -115,7 +137,7 @@ function ModuleList() {
                 </span>
                 <button
                   className="btn btn-primary btn-primary-override px-1 py-0"
-                  onClick={() => dispatch(deleteModule(module._id))}
+                  onClick={() => handleDeleteModule(module._id)}
                 >
                   Delete
                 </button>

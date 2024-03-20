@@ -16,32 +16,27 @@ import Home from "./Home";
 import Assignments from "./Assignments";
 import KanbasNavigation from "../Navigation";
 import CourseNavigationSmall from "./Navigation/Small";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 
 function Courses({ courses }: { courses: Course[] }) {
   const { courseId } = useParams();
-  const course = courses.find((course) => course._id === courseId);
+
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  const COURSES_API = `${API_BASE}/api/courses`;
+  const [course, setCourse] = useState<any>({ _id: "" });
+  const findCourseById = useCallback(
+    async (courseId?: string) => {
+      const response = await axios.get(`${COURSES_API}/${courseId}`);
+      setCourse(response.data);
+    },
+    [COURSES_API]
+  );
+  useEffect(() => {
+    findCourseById(courseId);
+  }, [courseId, findCourseById]);
   const { pathname } = useLocation();
-  const links = [
-    "Home",
-    "Modules",
-    "Piazza",
-    "Zoom",
-    "Assignments",
-    "Quizzes",
-    "Grades",
-    "People",
-    "Panopto",
-    "Discussions",
-    "Announcements",
-    "Pages",
-    "Files",
-    "Rubrics",
-    "Outcomes",
-    "Collaborations",
-    "Syllabus",
-    "Settings",
-  ];
-  const currentPage = links.find((link) => pathname.includes(link));
+  const currentPage = pathname.split("/")[4] || "";
   const navBarHeight = "50px";
 
   return (

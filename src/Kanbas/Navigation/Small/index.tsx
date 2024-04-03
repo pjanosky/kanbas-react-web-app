@@ -13,10 +13,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-function KanbasNavigationSmall(props: {
-  children: React.ReactNode;
-  hide: () => void;
-}) {
+function KanbasNavigationSmall(props: { hide: () => void }) {
   const links = [
     {
       label: "Account",

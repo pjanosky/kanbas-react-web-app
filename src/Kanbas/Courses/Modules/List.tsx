@@ -20,11 +20,17 @@ import {
 } from "./modulesReducer";
 import { KanbasState } from "../../store";
 import * as client from "./client";
+import { createSelector } from "@reduxjs/toolkit";
 
 function ModuleList() {
   const { courseId } = useParams();
-  const moduleList: Module[] = useSelector((state: KanbasState) =>
-    state.modulesReducer.modules.filter((module) => module.course === courseId)
+  const moduleListSelector = createSelector(
+    (state: KanbasState) => state.modulesReducer.modules,
+    (modules: Module[]) =>
+      modules.filter((module) => module.course === courseId)
+  );
+  const moduleList = useSelector((state: KanbasState) =>
+    moduleListSelector(state)
   );
   const module: Module = useSelector(
     (state: KanbasState) => state.modulesReducer.module

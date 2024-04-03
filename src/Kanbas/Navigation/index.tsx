@@ -4,57 +4,60 @@ import KanbasNavigationSmall from "./Small";
 import KanbasNavigationLarge from "./Large";
 import { HiChevronDown, HiMiniBars3 } from "react-icons/hi2";
 import { FaTimes } from "react-icons/fa";
-import { useLocation } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../store";
+import { setShowSmallNav } from "./navigationReducer";
 
-function KanbasNavigation({
-  children,
-  title = undefined,
-  subtitle = undefined,
-  accessory = undefined,
-}: {
-  children: React.ReactNode;
-  title?: string | undefined;
-  subtitle?: string | undefined;
-  accessory?: ((hide: () => void) => React.ReactNode) | undefined;
-}) {
+function KanbasNavigation({ children }: { children: React.ReactNode }) {
   const [showKanbasNav, setShowKanbasNav] = useState(false);
-  const [showAccessory, setShowAccessory] = useState(false);
-  const { pathname } = useLocation();
-  const defaultTitle = pathname.split("/").pop();
+  const showSmallNav = useSelector(
+    (state: KanbasState) => state.navigationReducer.showSmallNav
+  );
+  const showSmallNavButton = useSelector(
+    (state: KanbasState) => state.navigationReducer.showSmallNavButton
+  );
+  const title = useSelector(
+    (state: KanbasState) => state.navigationReducer.title
+  );
+  const subtitle = useSelector(
+    (state: KanbasState) => state.navigationReducer.subtitle
+  );
+  const dispatch = useDispatch();
 
-  return showKanbasNav ? (
-    <KanbasNavigationSmall hide={() => setShowKanbasNav(false)}>
-      <div></div>
-    </KanbasNavigationSmall>
-  ) : (
+  return (
     <div>
+      {showKanbasNav && (
+        <div className="position-absolute w-100 h-100 z-1">
+          <KanbasNavigationSmall hide={() => setShowKanbasNav(false)} />
+        </div>
+      )}
       <div className="d-md-none wd-nav-bar d-flex justify-content-between align-items-center">
         <HiMiniBars3 onClick={() => setShowKanbasNav((show) => !show)} />
-
         <div className="text-center">
-          {title || defaultTitle}
+          {title}
           <br />
           {subtitle}
         </div>
-        {showAccessory ? (
-          <FaTimes onClick={() => setShowAccessory((show) => !show)} />
-        ) : (
-          <HiChevronDown
-            className={`${accessory ? "" : "invisible"}`}
-            onClick={() => setShowAccessory((show) => !show)}
-          />
-        )}
-      </div>
-      <div className="d-md-none shadow">
-        {showAccessory && accessory && accessory(() => setShowAccessory(false))}
+        <div
+          onClick={() => dispatch(setShowSmallNav(!showSmallNav))}
+          className={showSmallNavButton ? "" : "invisible"}
+        >
+          {showSmallNav ? <FaTimes /> : <HiChevronDown />}
+        </div>
       </div>
       <div className="d-flex align-items-stretch">
-        <div className="d-none d-md-block">
+        <div
+          className="d-none d-md-block position-fixed h-100"
+          style={{ overflow: "auto" }}
+        >
           <KanbasNavigationLarge />
         </div>
-        <div className="wd-kanbas-nav-spacer d-none d-md-block"></div>
-        <div className="flex-grow-1" style={{ height: "100vh" }}>
-          {!showKanbasNav && children}
+        <div
+          className="d-none d-md-block flex-shrink-0 flex-grow-0"
+          style={{ width: "80px" }}
+        ></div>
+        <div className="flex-grow-1" style={{ height: "100%" }}>
+          {children}
         </div>
       </div>
     </div>

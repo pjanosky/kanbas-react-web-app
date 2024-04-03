@@ -29,29 +29,31 @@ function KanbasNavigationLarge() {
   ];
   const { pathname } = useLocation();
   return (
-    <ul className="wd-kanbas-navigation">
-      <li style={{ paddingBottom: "0px" }}>
-        <a href="http://northeastern.edu">
-          <img
-            src="/images/northeastern.png"
-            style={{ width: "4em", height: "4em", paddingBottom: "0px" }}
-            alt="Northeastern University Logo"
-          />
-        </a>
-      </li>
-      {links.map((link, index) => (
-        <li
-          className={pathname.includes(link.label) ? "wd-active" : ""}
-          key={index}
-        >
-          <Link to={`/Kanbas/${link.label}`}>
-            {link.icon}
-            <br />
-            {link.label}
-          </Link>
+    <div className="wd-kanbas-navigation">
+      <ul style={{ paddingBottom: "10px" }}>
+        <li>
+          <a href="http://northeastern.edu">
+            <img
+              src="/images/northeastern.png"
+              style={{ width: "4em", height: "4em", paddingBottom: "0px" }}
+              alt="Northeastern University Logo"
+            />
+          </a>
         </li>
-      ))}
-    </ul>
+        {links.map((link, index) => (
+          <li
+            className={pathname.includes(link.label) ? "wd-active" : ""}
+            key={index}
+          >
+            <Link to={`/Kanbas/${link.label}`}>
+              {link.icon}
+              <br />
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

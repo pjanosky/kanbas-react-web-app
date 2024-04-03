@@ -1,7 +1,7 @@
 .wd-kanbas-navigation-sm {
   background-color: white;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .wd-kanbas-navigation-sm li {
   list-style: none;

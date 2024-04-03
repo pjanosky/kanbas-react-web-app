@@ -1,16 +1,29 @@
-import { Navigate, Route, Routes } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import Dashboard from "./Dashboard";
 import "./Navigation/index.css";
 import Courses from "./Courses";
 import { useCallback, useEffect, useState } from "react";
 import { Course } from "./Database";
 import store from "./store";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import "./index.css";
 import KanbasNavigation from "./Navigation";
 import axios from "axios";
+import Account from "./Account";
+import {
+  setNavigationTitles,
+  setShowSmallNavButton,
+} from "./Navigation/navigationReducer";
 
-function Kanbas() {
+export default function Kanbas() {
+  return (
+    <Provider store={store}>
+      <KanbasContent />
+    </Provider>
+  );
+}
+
+function KanbasContent() {
   const [courses, setCourses] = useState([] as Course[]);
   const API_BASE = process.env.REACT_APP_API_BASE;
   const COURSES_API = `${API_BASE}/api/courses`;
@@ -49,96 +62,51 @@ function Kanbas() {
     );
   };
 
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const currentPage = pathname.split("/")[2] || "";
+    if (currentPage.toLowerCase() !== "courses") {
+      dispatch(
+        setNavigationTitles({
+          title: pathname.split("/")[2] || "",
+          subtitle: "",
+        })
+      );
+      dispatch(setShowSmallNavButton(false));
+    }
+  }, [pathname, dispatch]);
+
   return (
-    <Provider store={store}>
+    <KanbasNavigation>
       <Routes>
         <Route path="/" element={<Navigate to="Dashboard" replace={true} />} />
-        <Route
-          path="Account"
-          element={
-            <KanbasNavigation>
-              <h1>Account</h1>
-            </KanbasNavigation>
-          }
-        />
+        <Route path="/Account/*" element={<Account />} />
         <Route
           path="Dashboard"
           element={
-            <KanbasNavigation>
-              <Dashboard
-                courses={courses}
-                course={course}
-                setCourse={setCourse}
-                addNewCourse={addNewCourse}
-                deleteCourse={deleteCourse}
-                updateCourse={updateCourse}
-              />
-            </KanbasNavigation>
+            <Dashboard
+              courses={courses}
+              course={course}
+              setCourse={setCourse}
+              addNewCourse={addNewCourse}
+              deleteCourse={deleteCourse}
+              updateCourse={updateCourse}
+            />
           }
         />
         <Route
           path="Courses/:courseId/*"
           element={<Courses courses={courses} />}
         />
-
-        <Route
-          path="Courses/*"
-          element={
-            <KanbasNavigation>
-              <h1>Courses</h1>{" "}
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="Calendar"
-          element={
-            <KanbasNavigation>
-              <h1>Calendar</h1>
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="Inbox"
-          element={
-            <KanbasNavigation>
-              <h1>Inbox</h1>
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="History"
-          element={
-            <KanbasNavigation>
-              <h1>History</h1>
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="Studio"
-          element={
-            <KanbasNavigation>
-              <h1>Studio</h1>
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="Commons"
-          element={
-            <KanbasNavigation>
-              <h1>Commons</h1>
-            </KanbasNavigation>
-          }
-        />
-        <Route
-          path="Help"
-          element={
-            <KanbasNavigation>
-              <h1>Help</h1>
-            </KanbasNavigation>
-          }
-        />
+        <Route path="Courses/*" element={<h1>Courses</h1>} />
+        <Route path="Calendar" element={<h1>Calendar</h1>} />
+        <Route path="Inbox" element={<h1>Inbox</h1>} />
+        <Route path="History" element={<h1>History</h1>} />
+        <Route path="Studio" element={<h1>Studio</h1>} />
+        <Route path="Commons" element={<h1>Commons</h1>} />
+        <Route path="Help" element={<h1>Help</h1>} />
       </Routes>
-    </Provider>
+    </KanbasNavigation>
   );
 }
-export default Kanbas;

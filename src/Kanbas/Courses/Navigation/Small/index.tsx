@@ -15,8 +15,10 @@ import {
   FaRocket,
   FaUser,
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setShowSmallNav } from "../../../Navigation/navigationReducer";
 
-function CourseNavigationSmall({ hide }: { hide: () => void }) {
+function CourseNavigationSmall() {
   const links = [
     { title: "Home", icon: <FaHome /> },
     { title: "Modules", icon: <FaProjectDiagram /> },
@@ -38,22 +40,25 @@ function CourseNavigationSmall({ hide }: { hide: () => void }) {
     { title: "Settings", icon: <FaCog /> },
   ];
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
   return (
-    <div>
-      <ul className="wd-navigation-sm">
-        {links.map((link, index) => (
-          <li
-            key={index}
-            className={pathname.includes(link.title) ? "wd-active" : ""}
+    <ul className="wd-navigation-sm">
+      {links.map((link, index) => (
+        <li
+          key={index}
+          className={pathname.includes(link.title) ? "wd-active" : ""}
+        >
+          <Link
+            className="wd-link"
+            to={link.title}
+            onClick={() => dispatch(setShowSmallNav(false))}
           >
-            <Link className="wd-link" to={link.title} onClick={hide}>
-              {link.icon}
-              {link.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+            {link.icon}
+            {link.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 export default CourseNavigationSmall;

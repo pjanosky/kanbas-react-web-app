@@ -8,16 +8,21 @@ import {
   useParams,
 } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
-import CourseNavigation from "./Navigation/Large";
+import CourseNavigationLarge from "./Navigation/Large";
 import Modules from "./Modules";
 import "./index.css";
 import { FaChevronRight } from "react-icons/fa";
 import Home from "./Home";
 import Assignments from "./Assignments";
-import KanbasNavigation from "../Navigation";
-import CourseNavigationSmall from "./Navigation/Small";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setNavigationTitles,
+  setShowSmallNavButton,
+} from "../Navigation/navigationReducer";
+import { KanbasState } from "../store";
+import CourseNavigationSmall from "./Navigation/Small";
 
 function Courses({ courses }: { courses: Course[] }) {
   const { courseId } = useParams();
@@ -39,12 +44,27 @@ function Courses({ courses }: { courses: Course[] }) {
   const currentPage = pathname.split("/")[4] || "";
   const navBarHeight = "50px";
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      setNavigationTitles({
+        title: course.number,
+        subtitle: currentPage,
+      })
+    );
+    dispatch(setShowSmallNavButton(true));
+  }, [course.number, currentPage, dispatch]);
+  const showSmallNav = useSelector(
+    (state: KanbasState) => state.navigationReducer.showSmallNav
+  );
+
   return (
-    <KanbasNavigation
-      accessory={(hide) => <CourseNavigationSmall hide={hide} />}
-      title={course?.number}
-      subtitle={currentPage}
-    >
+    <div>
+      <div
+        className={`${showSmallNav ? "d-block" : "d-none"} d-md-none shadow`}
+      >
+        <CourseNavigationSmall />
+      </div>
       <div
         className="d-none d-md-block wd-course-title p-3"
         style={{ height: navBarHeight }}
@@ -67,7 +87,7 @@ function Courses({ courses }: { courses: Course[] }) {
           className="position-sticky top-0 left-0 overflow-scroll flex-shrink-0 d-none d-md-block"
           style={{ height: `100vh` }}
         >
-          <CourseNavigation />
+          <CourseNavigationLarge />
           <div style={{ height: navBarHeight }}></div>
         </div>
         <div className="p-3 flex-grow-1">
@@ -91,7 +111,6 @@ function Courses({ courses }: { courses: Course[] }) {
             <Route path="Collaborations" element={<h1>Collaborations</h1>} />
             <Route path="Syllabus" element={<h1>Syllabus</h1>} />
             <Route path="Settings" element={<h1>Settings</h1>} />
-
             <Route
               path="Assignments/:assignmentId"
               element={<h1>Assignment Editor</h1>}
@@ -100,7 +119,7 @@ function Courses({ courses }: { courses: Course[] }) {
           </Routes>
         </div>
       </div>
-    </KanbasNavigation>
+    </div>
   );
 }
 export default Courses;
